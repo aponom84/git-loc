@@ -41,7 +41,7 @@ def pop():
 	if adds is None:
 		return
 
-	pstr="%s %8u %5s %5s %7s %s \t%s"%(d,locs,'+'+str(adds),'-'+str(dels),hsh,who,cmt.strip())
+	pstr="%s \t %8u \t %5s \t %5s \t %7s \t %s \t %s"%(d,locs,'+'+str(adds),'-'+str(dels),hsh,who,cmt.strip())
 	if needsvg: stderr.write(pstr+'\n')
 	else: print(pstr)
 	h.append((d,locs,adds,dels,hsh,who,cmt))
@@ -51,6 +51,8 @@ if extfolder:
         gitopts+='--git-dir='+targetfolder+'/.git'
 gitlogopts = '--no-color --date-order --reverse -p'
 gitcmd = 'git '+gitopts+' log '+gitlogopts
+
+print("date \t total lines \t inserted \t removed \t commit id \t user name \t message")
 
 for x in popen(gitcmd):
 	if x.startswith('commit'):
